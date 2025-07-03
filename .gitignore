@@ -28,5 +28,3 @@ terraform.tfvars.json
 terraform.rc
 
 .env
-
-.terraform.lock.hcl
