@@ -19,7 +19,7 @@ resource "random_id" "rand_id" {
   byte_length = 8
 }
 resource "aws_s3_bucket" "demo-bucket" {
-  bucket = "demo-bucket-${random_id.rand_id.hex}" # Ensure this bucket name is globally unique
+  bucket = "demo-buckette-${random_id.rand_id.hex}" # Ensure this bucket name is globally unique
 }
 
 resource "aws_s3_object" "bucket-data" {
