@@ -33,14 +33,12 @@ resource "aws_subnet" "main" {
 
 #Craeting 4 instance, 2 in each subnet
 resource "aws_instance" "main" {
-  ami = "ami-0b4fbd58a32e7ef15" 
-  instance_type = "t3.micro"
-  count = 4
+  count = length(var.ec2_config)
+  ami = var.ec2_config[count.index].ami 
+  instance_type = var.ec2_config[count.index].instance_type
   subnet_id = element(aws_subnet.main[*].id, count.index % length(aws_subnet.main))
   #0 % 2 = 0
   #1 % 2 = 1
-  #2 % 2 = 0
-  #3 % 2 = 1
 
   tags = {
     Name = "${local.project}-instance-${count.index + 1}"
